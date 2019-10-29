@@ -1,0 +1,8 @@
+{
+  "contract": "toAnalyze",
+  "tool": "osiris",
+  "start": 1570746463.3731148,
+  "end": 1570746465.827927,
+  "duration": 2.4548122882843018,
+  "analysis": []
+}

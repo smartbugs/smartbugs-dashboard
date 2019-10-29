@@ -1,0 +1,14 @@
+{
+  "contract": "toAnalyze",
+  "tool": "honeybadger",
+  "start": 1569187599.173215,
+  "end": 1569187606.013118,
+  "duration": 6.839903116226196,
+  "analysis": [
+    {
+      "errors": [],
+      "file": "/toAnalyze/toAnalyze.sol",
+      "name": "SimpleDAO"
+    }
+  ]
+}

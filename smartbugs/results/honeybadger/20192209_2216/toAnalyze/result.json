@@ -1,0 +1,8 @@
+{
+  "contract": "toAnalyze",
+  "tool": "honeybadger",
+  "start": 1569186990.826122,
+  "end": 1569186993.0059571,
+  "duration": 2.179835081100464,
+  "analysis": []
+}

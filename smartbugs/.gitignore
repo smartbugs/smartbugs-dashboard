@@ -1,0 +1,31 @@
+#Ignore results
+results/oyente/*
+results/maian/*
+results/manticore/*
+results/mythril/*
+results/securify/*
+results/smartcheck/*
+results/slither/*
+results/solhint/*
+results/logs/*
+
+#Keep folders
+!results/securify/.keep
+!results/oyente/.keep
+!results/maian/.keep
+!results/mythril/.keep
+!results/manticore/.keep
+!results/smartcheck/.keep
+!results/slither/.keep
+!results/solhint/.keep
+!results/logs/.keep
+
+#Ignore DS_Store
+.DS_Store
+
+#Ignore pycache
+*.pyc
+__pycache__
+
+#Ignore vscode
+.vscode/

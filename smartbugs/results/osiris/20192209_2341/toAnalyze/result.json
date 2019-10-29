@@ -1,0 +1,35 @@
+{
+  "contract": "toAnalyze",
+  "tool": "osiris",
+  "start": 1569192208.859884,
+  "end": 1569192213.0510578,
+  "duration": 4.191173791885376,
+  "analysis": [
+    {
+      "errors": [
+        {
+          "line": 13,
+          "column": 5,
+          "message": "overflow_bugs"
+        },
+        {
+          "line": 20,
+          "column": 7,
+          "message": "underflow_bugs"
+        },
+        {
+          "line": 19,
+          "column": 18,
+          "message": "callstack_bug"
+        },
+        {
+          "line": 19,
+          "column": 18,
+          "message": "reentrancy_bug"
+        }
+      ],
+      "file": "/toAnalyze/toAnalyze.sol",
+      "name": "SimpleDAO"
+    }
+  ]
+}
