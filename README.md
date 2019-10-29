@@ -32,8 +32,13 @@ git clone https://github.com/smartbugs/smartbugs-dashboard.git
 Then run:
 
 ```
+npm install
 npm run smartbugs
 ```
+
+## Screenshot
+
+![](public/img/menu.png)
 
 ## Known Limitations
 
