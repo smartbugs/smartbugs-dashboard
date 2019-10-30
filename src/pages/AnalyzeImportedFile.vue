@@ -653,7 +653,7 @@ export default {
         this.loading = false;
         if (this.input === "") {
           this.errorMessage =
-            "Please provide a smart contract or a block of code to analyze ";
+            "Please provide a smart contract or a block of code to analyse ";
           this.showSnackbar = true;
         } else {
           this.errorMessage = "Upss! Something went wrong... ";

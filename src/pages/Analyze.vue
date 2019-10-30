@@ -3,30 +3,30 @@
     <card>
       <span slot="header">Analysis</span>
       <h4 class="text-success">
-        <b>Paste code to analyze</b>
+        <b>Paste code to analyse</b>
       </h4>
-      <p class="card-text">Paste a smart contract to be analyzed.</p>
+      <p class="card-text">Paste a smart contract to be analysed.</p>
       <br />
       <base-button
         block
         type="success"
         native-type="Submit"
         @click="analyzePastedFile"
-      >Paste code and analyze it</base-button>
+      >Paste code and analyse it</base-button>
     </card>
     <card>
       <span slot="header">Analysis</span>
       <h4 class="text-success">
-        <b>Import file to analyze</b>
+        <b>Import file to analyse</b>
       </h4>
-      <p class="card-text">Import a smart contract written in Solidity to be analyzed.</p>
+      <p class="card-text">Import a smart contract written in Solidity to be analysed.</p>
       <br />
       <base-button
         block
         type="success"
         native-type="Submit"
         @click="analyzeImportedFile"
-      >Import a file to analyze</base-button>
+      >Import a file to analyse</base-button>
     </card>
 
     <card>
@@ -38,7 +38,7 @@
         class="card-text"
       >Run analysis on one of our datasets or one made by yourself. Useful to run several contracts on named datasets.</p>
       <br />
-      <base-button block type="success" native-type="Submit" @click="analyzeDataset">Analyze dataset</base-button>
+      <base-button block type="success" native-type="Submit" @click="analyzeDataset">Analyse dataset</base-button>
     </card>
   </div>
 </template>
