@@ -424,7 +424,7 @@
               </div>
             </div>
 
-            <!-- SMARTCHECK -->
+                  <!-- SMARTCHECK -->
             <div v-if="result.tool === 'smartcheck' ">
               <div v-if="result.analysis.length === 0">
                 <h8 class="text-info">No issue detected.</h8>
@@ -441,6 +441,7 @@
               </div>
             </div>
 
+
             <!-- solhint -->
             <div v-if="result.tool === 'solhint' ">
               <div v-if="result.analysis.length === 0">
@@ -453,6 +454,13 @@
                     <i class="text-warning">{{analysis.line}}</i>
                   </h8>
                 </p>
+              </div>
+            </div>
+
+              <!-- else -->
+            <div v-else>
+              <div>
+                  {{result}}
               </div>
             </div>
           </card>

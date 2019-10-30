@@ -453,6 +453,13 @@
                 </p>
               </div>
             </div>
+
+            <!-- else -->
+            <div v-else>
+              <div >
+                  {{result}}
+              </div>
+            </div>
           </card>
         </div>
         <div>
