@@ -29,6 +29,12 @@ The first step is to clone [SmartBugs Dashboard's repository](https://github.com
 git clone https://github.com/smartbugs/smartbugs-dashboard.git
 ```
 
+SmartBugs requires Python3 to run. To install all the requirements, you can execute:
+
+```
+pip3 install -r smartbugs/requirements.txt
+```
+
 Then run:
 
 ```
