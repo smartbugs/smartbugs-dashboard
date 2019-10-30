@@ -1,3 +1,0 @@
-py-etherscan-api
-requests>=2.20.0
-typing==3.6.4
