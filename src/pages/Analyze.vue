@@ -38,7 +38,7 @@
         class="card-text"
       >Run analysis on one of our datasets or one made by yourself. Useful to run several contracts on named datasets.</p>
       <br />
-      <base-button block type="success" native-type="Submit" @click="analyzeDataset">Analyse dataset</base-button>
+      <base-button :disabled="true" block type="success" native-type="Submit" @click="analyzeDataset">Analyse dataset</base-button>
     </card>
   </div>
 </template>

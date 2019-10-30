@@ -639,8 +639,6 @@ export default {
         this.loadChart(tools, issues);
         this.results = result.data;
 
-        console.log(this.results);
-
         this.analysing = false;
         this.analysis = true;
       } catch (error) {
