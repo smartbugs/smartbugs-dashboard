@@ -457,12 +457,6 @@
               </div>
             </div>
 
-              <!-- else -->
-            <div v-else>
-              <div>
-                  {{result}}
-              </div>
-            </div>
           </card>
         </div>
         <div>
@@ -656,7 +650,6 @@ export default {
         this.loadChart(tools, issues);
 
         this.results = await result.data;
-        console.log(this.results);
       } catch (error) {
         this.loading = false;
         if (this.input === "") {
