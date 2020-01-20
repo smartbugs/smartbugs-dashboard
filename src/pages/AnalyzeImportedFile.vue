@@ -424,7 +424,7 @@
               </div>
             </div>
 
-            <!-- SMARTCHECK -->
+                  <!-- SMARTCHECK -->
             <div v-if="result.tool === 'smartcheck' ">
               <div v-if="result.analysis.length === 0">
                 <h8 class="text-info">No issue detected.</h8>
@@ -441,6 +441,7 @@
               </div>
             </div>
 
+
             <!-- solhint -->
             <div v-if="result.tool === 'solhint' ">
               <div v-if="result.analysis.length === 0">
@@ -455,6 +456,7 @@
                 </p>
               </div>
             </div>
+
           </card>
         </div>
         <div>
@@ -648,12 +650,11 @@ export default {
         this.loadChart(tools, issues);
 
         this.results = await result.data;
-        console.log(this.results);
       } catch (error) {
         this.loading = false;
         if (this.input === "") {
           this.errorMessage =
-            "Please provide a smart contract or a block of code to analyze ";
+            "Please provide a smart contract or a block of code to analyse ";
           this.showSnackbar = true;
         } else {
           this.errorMessage = "Upss! Something went wrong... ";

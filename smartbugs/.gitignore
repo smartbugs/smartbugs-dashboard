@@ -6,11 +6,15 @@ results/mythril/*
 results/securify/*
 results/smartcheck/*
 results/slither/*
+results/honeybadger/*
+results/osiris/*
 results/solhint/*
 results/logs/*
 
 #Keep folders
 !results/securify/.keep
+!results/osiris/.keep
+!results/honeybadger/.keep
 !results/oyente/.keep
 !results/maian/.keep
 !results/mythril/.keep

@@ -1,4 +1,4 @@
-# SmartBugs Dashboard: A Framework to Analyze Solidity Smart Contracts
+# SmartBugs Dashboard
 
 SmartBugs is an execution framework aiming at simplifying the execution of analysis tools on datasets of smart contracts.
 
@@ -26,14 +26,26 @@ SmartBugs is an execution framework aiming at simplifying the execution of analy
 The first step is to clone [SmartBugs Dashboard's repository](https://github.com/smartbugs/smartbugs-dashboard):
 
 ```
-git clone https://github.com/smartbugs/smartbugs.git
+git clone https://github.com/smartbugs/smartbugs-dashboard.git
+```
+
+SmartBugs requires to have installed Python3 and Docker. Docker should be running.
+To install all the requirements, you can execute:
+
+```
+pip3 install -r smartbugs/requirements.txt
 ```
 
 Then run:
 
 ```
+npm install
 npm run smartbugs
 ```
+
+## Screenshot
+
+![](public/img/menu.png)
 
 ## Known Limitations
 

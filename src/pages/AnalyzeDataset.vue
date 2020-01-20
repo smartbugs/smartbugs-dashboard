@@ -514,6 +514,7 @@ export default {
         const i = this.selectedTools.indexOf(this.tools[index]);
         this.selectedTools.splice(i, 1);
       } else {
+        if (this.selectedTools.length === 1) this.selectedTools = []
         this.selectedTools.push(this.tools[index]);
       }
     },
@@ -633,11 +634,24 @@ export default {
         });
 
         this.analysing = true;
+
+        let dataset
+        if (this.selectedDataset === "Access Control") dataset = "access_control"
+        if (this.selectedDataset === "Arithmetic") dataset = "arithmetic"
+        if (this.selectedDataset === "Bad Randomness") dataset = "bad_randomness"
+        if (this.selectedDataset === "Denial Of Service") dataset = "denial_of_service"
+        if (this.selectedDataset === "Front Running") dataset = "front_running"
+        if (this.selectedDataset === "Other") dataset = "other"
+        if (this.selectedDataset === "Reentrancy") dataset = "reentrancy"
+        if (this.selectedDataset === "Short Addresses") dataset = "short_addresses"
+        if (this.selectedDataset === "Time Manipulation") dataset = "time_manipulation"
+        if (this.selectedDataset === "Unchecked Low Level Calls") dataset = "unchecked_low_level_calls"
+
         const result = await axios.post(
           "http://localhost:5000/dataset-analysis",
           {
             tools: tools,
-            dataset: this.selectedDataset
+            dataset: dataset
           }
         );
 
