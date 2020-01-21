@@ -2,15 +2,15 @@
   <div class="wrapper">
     <side-bar>
       <template slot="links">
-        <sidebar-link to="/analyze" :name="$t('run analysis')" icon="tim-icons icon-zoom-split" />
-        <sidebar-link to="/tools" :name="$t('tools')" icon="tim-icons icon-bullet-list-67" />
-        <sidebar-link to="/dataset" :name="$t('dataset')" icon="tim-icons icon-single-copy-04" />
+        <sidebar-link to="/analyze" :name="'run analysis'" icon="tim-icons icon-zoom-split" />
+        <sidebar-link to="/tools" :name="'tools'" icon="tim-icons icon-bullet-list-67" />
+        <sidebar-link to="/dataset" :name="'dataset'" icon="tim-icons icon-single-copy-04" />
         <sidebar-link
           to="/vulnerabilities"
-          :name="$t('vulnerabilities')"
+          :name="'vulnerabilities'"
           icon="tim-icons icon-paper"
         />
-        <sidebar-link to="/about" :name="$t('about')" icon="tim-icons icon-satisfied" />
+        <sidebar-link to="/about" :name="'about'" icon="tim-icons icon-satisfied" />
       </template>
     </side-bar>
     <div class="main-panel">

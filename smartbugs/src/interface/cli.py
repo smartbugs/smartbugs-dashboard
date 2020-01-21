@@ -11,6 +11,8 @@ TOOLS_CHOICES = ['all']
 CONFIG_TOOLS_PATH = os.path.abspath('smartbugs/config/tools')
 CONFIG_DATASET_PATH= os.path.abspath('smartbugs/config/dataset/dataset.yaml')
 
+print(CONFIG_DATASET_PATH)
+
 with open(CONFIG_DATASET_PATH, 'r') as ymlfile:
     try:
         cfg_dataset = yaml.safe_load(ymlfile)
