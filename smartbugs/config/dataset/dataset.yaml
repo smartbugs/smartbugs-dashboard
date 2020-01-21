@@ -7,3 +7,4 @@ reentrancy: smartbugs/dataset/reentrancy
 short_addresses: smartbugs/dataset/short_addresses
 time_manipulation: smartbugs/dataset/time_manipulation
 unchecked_ll_calls: smartbugs/dataset/unchecked_low_level_calls
+other: smartbugs/dataset/other

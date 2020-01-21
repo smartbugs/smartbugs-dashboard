@@ -164,7 +164,8 @@ def parse_results(output, tool, file_name, container, cfg, logs, results_folder,
                         output_folder, 'result.tar'))
                     try:
                         output_file = tar.extractfile('results/results.json')
-                        results['analysis'] = json.loads(output_file.read())
+                        results['analysis'] = json.loads(
+                            output_file.read())["results"]
                     except Exception as e:
                         output_file = tar.extractfile('results/live.json')
                         results['analysis'] = {

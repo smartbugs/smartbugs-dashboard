@@ -26,27 +26,13 @@
             <br />
           </div>
         </div>
-        <div
-          class="alert alert-danger alert-dismissible fade show text-right"
-          v-if="showSnackbar"
-          role="alert"
-        >
-          <span style="text-align:left" v-text="errorMessage"></span>
-
-          <base-button
-            type="default"
-            class="btn btn-primary btn-sm"
-            @click="showSnackbar = false"
-          >Close</base-button>
-        </div>
-
-        <div v-if="!showSnackbar">
+        <div>
           <base-button block type="success" native-type="Submit" @click="runAnalysis">Run Analysis</base-button>
         </div>
       </form>
     </card>
     <div>
-      <div v-if="analysing" loading class="analysis" style="text-align:left">
+      <div v-if="analysing && !showSnackbar" loading class="analysis" style="text-align:left">
         <div>
           <card>
             <span loading slot="header" type="primary">
@@ -61,7 +47,7 @@
       </div>
 
       <div v-if="analysis" class="analysis" style="text-align:left">
-        <div>
+        <div v-if="options.series[0].data.length != 0">
           <card>
             <center>
               <b>Number of issues found by each tool</b>
@@ -108,8 +94,8 @@
 
             <!-- HONEYBADGER -->
             <div v-if="result.tool === 'honeybadger' ">
-              <div v-if="result.analysis.length === 0">
-                <h8 class="text-info">No issue detected.</h8>
+              <div v-if="result.analysis.length === 0 || result.analysis[0].errors.length === 0">
+                <h5 class="text-info">No issue detected.</h5>
               </div>
               <div v-for="(analysis, id) in result.analysis" :key="id">
                 <div v-for="(error, id) in analysis.errors" :key="id">
@@ -117,10 +103,10 @@
                     <b>{{ error.message }}</b>
                   </h4>
                   <p class="card-text">
-                    <h8>
+                    <h5>
                       Line:
                       <i class="text-warning">{{error.line}}</i>
-                    </h8>
+                    </h5>
                   </p>
 
                   <br />
@@ -131,27 +117,27 @@
             <!-- MYTHRIL -->
             <div v-if="result.tool === 'mythril' ">
               <div v-if="result.analysis.issues.length === 0">
-                <h8 class="text-info">No issue detected.</h8>
+                <h5 class="text-info">No issue detected.</h5>
               </div>
               <div v-for="(issue, id) in result.analysis.issues" :key="id">
                 <h4 class="text-danger" style="text-align:left">
                   <b>{{ issue.title }}</b>
                 </h4>
                 <p class="card-text">
-                  <h8>Description: {{issue.description}}</h8>
+                  <h5>Description: {{issue.description}}</h5>
                 </p>
                 <p class="card-text">
-                  <h8>
+                  <h5>
                     Type:
                     <i>{{issue.type}}</i>
-                  </h8>
+                  </h5>
                 </p>
                 <p class="card-text">
-                  <h8>
+                  <h5>
                     Code:
                     <i class="text-warning">{{issue.code}}</i> at line:
                     <i class="text-warning">{{issue.lineno}}</i>
-                  </h8>
+                  </h5>
                 </p>
                 <br />
               </div>
@@ -162,7 +148,7 @@
               <div
                 v-if="!result.analysis.is_lock_vulnerable && !result.analysis.is_lock_vulnerable && !result.analysis.is_prodigal_vulnerable"
               >
-                <h8 class="text-info">No issue detected.</h8>
+                <h5 class="text-info">No issue detected.</h5>
               </div>
               <div v-if="result.analysis.is_lock_vulnerable">
                 <h4 class="text-danger" style="text-align:left">
@@ -187,7 +173,7 @@
             <!-- OYENTE -->
             <div v-if="result.tool === 'oyente' ">
               <div v-if="result.analysis.length === 0">
-                <h8 class="text-info">No issue detected.</h8>
+                <h5 class="text-info">No issue detected.</h5>
               </div>
               <div v-for="(analysis, id) in result.analysis" :key="id">
                 <div v-for="(error, id) in analysis.errors" :key="id">
@@ -196,16 +182,16 @@
                   </h4>
 
                   <p class="card-text">
-                    <h8>
+                    <h5>
                       Type:
                       <i>{{error.level}}</i>
-                    </h8>
+                    </h5>
                   </p>
                   <p class="card-text">
-                    <h8>
+                    <h5>
                       Line:
                       <i class="text-warning">{{error.line}}</i>
-                    </h8>
+                    </h5>
                   </p>
 
                   <br />
@@ -216,7 +202,7 @@
             <!-- OSIRIS -->
             <div v-if="result.tool === 'osiris' ">
               <div v-if="result.analysis.length === 0">
-                <h8 class="text-info">No issue detected.</h8>
+                <h5 class="text-info">No issue detected.</h5>
               </div>
               <div v-for="(analysis, id) in result.analysis" :key="id">
                 <div v-for="(error, id) in analysis.errors" :key="id">
@@ -224,10 +210,10 @@
                     <b>{{ error.message }}</b>
                   </h4>
                   <p class="card-text">
-                    <h8>
+                    <h5>
                       Line:
                       <i class="text-warning">{{error.line}}</i>
-                    </h8>
+                    </h5>
                   </p>
 
                   <br />
@@ -237,8 +223,8 @@
 
             <!-- MANTICORE -->
             <div v-if="result.tool === 'manticore' ">
-              <div v-if="result.analysis.length === 0">
-                <h8 class="text-info">No issue detected.</h8>
+              <div v-if="result.analysis.length === 0 || result.analysis[0].length === 0">
+                <h5 class="text-info">No issue detected.</h5>
               </div>
               <div v-for="(analysis, id) in result.analysis" :key="id">
                 <div v-for="(error, id) in analysis" :key="id">
@@ -246,11 +232,11 @@
                     <b>{{ error.name }}</b>
                   </h4>
                   <p class="card-text">
-                    <h8>
+                    <h5>
                       Code:
                       <i class="text-warning">{{error.code}}</i> at line:
                       <i class="text-warning">{{error.line}}</i>
-                    </h8>
+                    </h5>
                   </p>
 
                   <br />
@@ -261,21 +247,21 @@
             <!-- SECURIFY -->
             <div v-if="result.tool === 'securify'">
               <div v-if=" result.analysis === null">
-                <h8 class="text-info">No issue detected.</h8>
+                <h5 class="text-info">No issue detected.</h5>
               </div>
 
-              <div v-if="result.analysis != null">
+              <div v-else>
                 <div v-if="result.analysis.toAnalyze.results.DAO.hasViolations">
-                  <h4 cclass="text-danger" style="text-align:left">
+                  <h4 class="text-danger" style="text-align:left">
                     <b>DAO</b>
                   </h4>
                   <p v-if="result.analysis.toAnalyze.results.DAO.hasViolations" class="card-text">
-                    <h8>
+                    <h5>
                       At lines:
                       <i
                         class="text-warning"
                       >{{ result.analysis.toAnalyze.results.DAO.violations }}</i>
-                    </h8>
+                    </h5>
                   </p>
                 </div>
 
@@ -287,12 +273,12 @@
                     v-if="result.analysis.toAnalyze.results.DAOConstantGas.hasViolations"
                     class="card-text"
                   >
-                    <h8>
+                    <h5>
                       At lines:
                       <i
                         class="text-warning"
                       >{{ result.analysis.toAnalyze.results.DAOConstantGas.violations }}</i>
-                    </h8>
+                    </h5>
                   </p>
                 </div>
 
@@ -304,12 +290,12 @@
                     v-if="result.analysis.toAnalyze.results.MissingInputValidation.hasViolations"
                     class="card-text"
                   >
-                    <h8>
+                    <h5>
                       At lines:
                       <i
                         class="text-warning"
                       >{{ result.analysis.toAnalyze.results.MissingInputValidation.violations }}</i>
-                    </h8>
+                    </h5>
                   </p>
                 </div>
 
@@ -321,12 +307,12 @@
                     v-if="result.analysis.toAnalyze.results.TODAmount.hasViolations"
                     class="card-text"
                   >
-                    <h8>
+                    <h5>
                       At lines:
                       <i
                         class="text-warning"
                       >{{ result.analysis.toAnalyze.results.TODAmount.violations }}</i>
-                    </h8>
+                    </h5>
                   </p>
                 </div>
 
@@ -338,12 +324,12 @@
                     v-if="result.analysis.toAnalyze.results.TODReceiver.hasViolations"
                     class="card-text"
                   >
-                    <h8>
+                    <h5>
                       At lines:
                       <i
                         class="text-warning"
                       >{{ result.analysis.toAnalyze.results.TODReceiver.violations }}</i>
-                    </h8>
+                    </h5>
                   </p>
                 </div>
 
@@ -355,12 +341,12 @@
                     v-if="result.analysis.toAnalyze.results.TODTransfer.hasViolations"
                     class="card-text"
                   >
-                    <h8>
+                    <h5>
                       At lines:
                       <i
                         class="text-warning"
                       >{{ result.analysis.toAnalyze.results.TODTransfer.violations }}</i>
-                    </h8>
+                    </h5>
                   </p>
                 </div>
 
@@ -372,12 +358,12 @@
                     v-if="result.analysis.toAnalyze.results.UnhandledException.hasViolations"
                     class="card-text"
                   >
-                    <h8>
+                    <h5>
                       At lines:
                       <i
                         class="text-warning"
                       >{{ result.analysis.toAnalyze.results.UnhandledException.violations }}</i>
-                    </h8>
+                    </h5>
                   </p>
                 </div>
 
@@ -389,12 +375,12 @@
                     v-if="result.analysis.toAnalyze.results.UnrestrictedEtherFlow.hasViolations"
                     class="card-text"
                   >
-                    <h8>
+                    <h5>
                       At lines:
                       <i
                         class="text-warning"
                       >{{ result.analysis.toAnalyze.results.UnrestrictedEtherFlow.violations }}</i>
-                    </h8>
+                    </h5>
                   </p>
                 </div>
               </div>
@@ -403,14 +389,14 @@
             <!-- SLITHER -->
             <div v-if="result.tool === 'slither' ">
               <div v-if="result.analysis.length === 0">
-                <h8 class="text-info">No issue detected.</h8>
+                <h5 class="text-info">No issue detected.</h5>
               </div>
               <div v-for="(analysis, id) in result.analysis" :key="id">
                 <h4 class="text-danger" style="text-align:left">
                   <b>{{ analysis.check }}</b>
                 </h4>
                 <p class="card-text">
-                  <h8>{{analysis.description}}</h8>
+                  <h5>{{analysis.description}}</h5>
                 </p>
                 <br />
               </div>
@@ -419,15 +405,15 @@
             <!-- SMARTCHECK -->
             <div v-if="result.tool === 'smartcheck' ">
               <div v-if="result.analysis.length === 0">
-                <h8 class="text-info">No issue detected.</h8>
+                <h5 class="text-info">No issue detected.</h5>
               </div>
               <div v-for="(analysis, id) in result.analysis" :key="id">
                 <h4 class="text-danger" style="text-align:left">{{ analysis.name }}</h4>
                 <p class="card-text">
-                  <h8>
+                  <h5>
                     <i class="text-warning">{{analysis.content}}</i> at line
                     <i class="text-warning">{{analysis.line}}</i>
-                  </h8>
+                  </h5>
                 </p>
                 <br />
               </div>
@@ -436,14 +422,14 @@
             <!-- solhint -->
             <div v-if="result.tool === 'solhint' ">
               <div v-if="result.analysis.length === 0">
-                <h8 class="text-info">No issue detected.</h8>
+                <h5 class="text-info">No issue detected.</h5>
               </div>
               <div v-for="(analysis, id) in result.analysis" :key="id">
                 <p class="text-danger">
-                  <h8>
+                  <h5>
                     <i class="text-warning">{{analysis.message}}</i> at line
                     <i class="text-warning">{{analysis.line}}</i>
-                  </h8>
+                  </h5>
                 </p>
               </div>
             </div>
@@ -453,6 +439,18 @@
           <base-button block type="warning" native-type="Submit" @click="clear">Clear</base-button>
         </div>
       </div>
+    </div>
+    <div
+      class="alert alert-danger alert-dismissible fade show text-right"
+      v-if="showSnackbar"
+      role="alert">
+        <span style="text-align:left" v-text="errorMessage"></span>
+        <base-button
+          type="default"
+          class="btn btn-primary btn-sm"
+          @click="clear"
+        >Close
+        </base-button>
     </div>
   </div>
 </template>
@@ -498,12 +496,15 @@ export default {
       }
     },
     clear() {
+      this.loading = false
+      this.analysing = false
+      this.showSnackbar = false
       this.analysis = false;
       this.selectedTool = 100;
       this.selectedTools = [];
       this.input = "";
     },
-    async loadChart(tools, issues) {
+    loadChart(tools, issues) {
       this.options = {
         autoresize: true,
         title: {
@@ -601,7 +602,10 @@ export default {
     },
     async runAnalysis() {
       try {
-        if (this.input === "") throw new Error("Empty input");
+        if (this.input === "") {
+          throw new Error("Empty input")
+        };
+        this.results = [];
         let tools = [];
         this.selectedTools.forEach(tool => {
           tools.push(tool.toLowerCase());
@@ -617,13 +621,30 @@ export default {
         );
 
         let issues = [];
+   
         result.data.forEach(result => {
           if (
             result.tool === "oyente" ||
             result.tool === "honeybadger" ||
-            result.tool === "osiris"
+            result.tool === "osiris" 
           ) {
             issues.push(result.analysis[0].errors.length);
+          } else if ( result.tool === "manticore" ) {
+            issues.push(result.analysis[0].length);
+          } else if ( result.tool === "securify" ) {
+            let nrIssues = 0
+            if(result.analysis.toAnalyze.results.DAO.hasViolations) nrIssues++
+            if(result.analysis.toAnalyze.results.DAOConstantGas.hasViolations) nrIssues++
+            if(result.analysis.toAnalyze.results.MissingInputValidation.hasViolations) nrIssues++
+            if(result.analysis.toAnalyze.results.TODAmount.hasViolations) nrIssues++
+            if(result.analysis.toAnalyze.results.TODReceiver.hasViolations) nrIssues++
+            if(result.analysis.toAnalyze.results.TODTransfer.hasViolations) nrIssues++
+            if(result.analysis.toAnalyze.results.UnhandledException.hasViolations) nrIssues++
+            if(result.analysis.toAnalyze.results.UnrestrictedEtherFlow.hasViolations) nrIssues++
+            
+            issues.push(nrIssues);
+          } else if (result.tool === "mythril") {
+            issues.push(result.analysis.issues.length);
           } else {
             issues.push(result.analysis.length);
           }
@@ -631,7 +652,6 @@ export default {
 
         this.loadChart(tools, issues);
         this.results = result.data;
-
         this.analysing = false;
         this.analysis = true;
       } catch (error) {

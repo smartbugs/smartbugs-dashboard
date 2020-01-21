@@ -20,7 +20,6 @@ import router from "./router/index";
 
 import BlackDashboard from "./plugins/blackDashboard";
 import EChart from "./plugins/echarts";
-import i18n from "./i18n"
 import './registerServiceWorker'
 
 Vue.use(BlackDashboard);
@@ -31,6 +30,5 @@ Vue.use(EChart);
 /* eslint-disable no-new */
 new Vue({
   router,
-  i18n,
   render: h => h(App)
 }).$mount("#app");
