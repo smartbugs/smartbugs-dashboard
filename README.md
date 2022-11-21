@@ -1,4 +1,6 @@
-# SmartBugs Dashboard
+# ⛔️ DEPRECATED: SmartBugs Dashboard
+
+**This project is no longer maintained. Please consider using [SmartBugs](https://github.com/smartbugs/smartbugs) instead.**
 
 SmartBugs is an execution framework aiming at simplifying the execution of analysis tools on datasets of smart contracts.
 
